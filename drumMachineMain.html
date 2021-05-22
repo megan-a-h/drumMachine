@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+  
+    <head>
+        <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      <!--bootstrap stylesheet-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    
+     <!--bootstrap/jquery/popper-->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+   
+    <!--Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+    
+    <!--Font Awesome For Linkedin button-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
+      <!--stylesheet - mine-->
+         <link rel="stylesheet" type="text/css" href="main.css">
+        
+
+
+     <!--my js file-->
+
+     
+     
+    
+         <title>Drum Machine</title>
+    </head>
+  <body>
+    <main></main>
+   
+        <div id="mainDiv" class="container">
+       
+          <div class="d-flex flex-row">  
+            <div class="p-2 ">
+        </div>
+        </div>
+        <div  class="d-flex flex-row">  
+          <div class="p-2 ">
+      </div>
+      </div>
+        <!--Navbar-->
+       <div id="myNav" class="d-flex flex-row justify-content-end">  
+         <div class="p-2 ">
+        <nav class="navbar navbar-expand " >
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html">Home </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About Me</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="portfolio.html">Technical Portfolio</a>
+              </li> 
+            </ul>
+          
+        </nav>
+      </div>
+      </div> 
+
+      <div class="d-flex flex-row">  
+        <div class="p-2 ">
+    </div>
+    </div>
+    <div  class="d-flex flex-row">  
+      <div class="p-2 ">
+      </div>
+    </div>
+    <div  class="d-flex flex-row">  
+      <div class="p-2 ">
+      </div>
+    </div>
+
+      <div class="row justify-content-center align-items-center">
+       
+        <div>
+            <h1 class="text-center">Drum Machine</h1>
+            <p class="text-center">Click buttons for sound or press related letter keys on keyboard</p>
+              <div class="text-center" id="app"></div>
+        </div>
+        
+       
+      </div>
+
+
+    </div>
+    </main>
+
+    <!---Deploy React  CHANGE TO PRODUCTION WHEN I LAUNCH-->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script  src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!--Load React Component -->
+    <script type="text/babel" >
+    'use strict';
+
+const buttonSounds = [
+  {
+    id: 'Q',
+    keyCode: 81,
+    innertext: 'Hi-Hat Closed',
+    link: 'drumMachineSounds/Hat1.wav'  
+  },
+    {
+    id: 'W',
+    keyCode: 87,
+    innertext: 'Hi-Hat Half Open',
+    link: 'drumMachineSounds/Hat2.wav'  
+  },
+     {
+    id: 'E',
+    keyCode: 69,
+    innertext: 'Hi Hat Open',
+    link: 'drumMachineSounds/Hat3.wav'  
+  },
+       {
+    id: 'A',
+    keyCode: 65,
+    innertext: 'Flam Snare',
+    link: 'drumMachineSounds/Snare1.wav' 
+  },
+       {
+    id: 'S',
+    keyCode: 83,
+    innertext: 'Single Hit Snare',
+    link: 'drumMachineSounds/Snare2.wav'  
+  },
+       {
+    keyCode: 68,
+    id: 'D',
+    innertext: 'Close Snare Hit',
+    link: 'drumMachineSounds/Snare3.wav'  
+  },
+       {
+    id: 'Z',
+    keyCode: 90,
+    innertext: 'High Kick Drum',
+    link: 'drumMachineSounds/Kick1.wav'  
+  },
+       {
+    id: 'X',
+    keyCode: 88,
+    innertext: 'Low Kick Drum',
+    link: 'drumMachineSounds/Kick2.wav'  
+  },
+       {
+    id: 'C',
+    keyCode: 67,
+    innertext: 'Medium Kick Drum',
+    link: 'drumMachineSounds/Kick3.wav'    
+  }
+  
+  
+];
+
+class DrumMachine extends React.Component{
+      constructor(props){
+          super(props);
+        this.state={
+          buttonNum : '',
+          id: '',
+          
+          innerText: ''
+        };
+      
+      this.onButtonPress = this.onButtonPress.bind(this);
+        this.onKeyPress = this.onKeyPress.bind(this);
+      
+      }
+ 
+  componentDidMount(){
+      document.addEventListener("keydown", this.onKeyPress);
+  }
+  
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.onKeyPress);
+  }
+  
+  onKeyPress(event){
+      var number = event.keyCode;
+      var index = '';
+    
+    switch(number){
+      case 81:
+        index = 0;
+        break;
+      case 87:
+        index = 1;
+        break;
+       case 69:
+        index = 2;
+        break;
+       case 65:
+        index = 3;
+        break;
+       case 83:
+        index = 4;
+        break;
+         case 68:
+        index = 5;
+        break;
+         case 90:
+        index = 6;
+        break;
+         case 88:
+        index = 7;
+        break;
+         case 67:
+        index = 8;
+      
+    }
+      
+      var letter = buttonSounds[index].id;
+    
+   this.onButtonPress(index, letter);
+  
+  }
+  
+  onButtonPress(number, letter){
+      this.setState({
+      buttonNum: number,
+      id: buttonSounds[number].id,
+      innerText: buttonSounds[number].innertext
+      });
+    
+    document.getElementById(letter).play();
+   
+  }
+  
+  
+  
+  
+      render(){
+
+        
+        
+        return(
+          
+         
+          <div id="drum-machine">
+            <div className="row">
+                <div className="col-sm-3"></div>
+             <button className="btn drum-pad col-sm-2"
+                id="sound1" onClick={() =>
+                this.onButtonPress(0, 'Q')}>Q
+                <audio className="clip" id= "Q" src = {buttonSounds[0].link}/>
+                </button>
+
+             <button className="btn drum-pad col-sm-2"
+                id="sound2" onClick={() => this.onButtonPress(1, 'W')}>W
+               <audio className="clip" id= "W" src = {buttonSounds[1].link}/>
+              </button>
+
+               <button className="btn drum-pad col-sm-2"
+                id="sound3" onClick={() => this.onButtonPress(2, 'E')}>E
+              <audio className="clip" id= "E" src = {buttonSounds[2].link}/></button>
+              <div className="col-sm-3"></div>
+              </div>
+
+              <div className="row">
+                <div className="col-sm-3"></div>
+               <button className="btn drum-pad col-sm-2"
+                id="sound4"
+                 onClick={() => this.onButtonPress(3, 'A')}>A
+              <audio className="clip" id= "A" src = {buttonSounds[3].link}/></button>
+
+               <button className="btn drum-pad col-sm-2"
+                id="sound5" onClick={() => this.onButtonPress(4, 'S')}>S
+              <audio className="clip" id= "S" src = {buttonSounds[4].link}/></button>
+
+               <button className="btn drum-pad col-sm-2"
+                id="sound6" onClick={() => this.onButtonPress(5, 'D')}>D
+              <audio className="clip" id= "D" src = {buttonSounds[5].link}/></button>
+              <div className="col-sm-3"></div>
+                </div>
+               
+             <div className="row">
+                <div className="col-sm-3"></div>
+               <button className="btn drum-pad col-sm-2"
+                id="sound7"
+                 onClick={() => this.onButtonPress(6, 'Z')}>Z
+              <audio className="clip" id= "Z" src = {buttonSounds[6].link}/></button>
+
+               <button className="btn drum-pad col-sm-2"
+                id="sound8" onClick={() => this.onButtonPress(7, 'X')}>X
+              <audio className="clip" id= "X" src = {buttonSounds[7].link}/></button>
+
+               <button className="btn drum-pad col-sm-2"
+                id="sound9" onClick={() => this.onButtonPress(8, 'C')}>C
+              <audio className="clip" id= "C" src = {buttonSounds[8].link}/></button>
+              <div className="col-sm-3"></div>
+              </div>
+             
+               <p>Last Sound Played:</p>
+            <p id="display">{this.state.innerText}</p>
+            
+          </div>
+        
+        );
+      
+      
+      }
+
+
+}
+
+ReactDOM.render(<DrumMachine />, document.getElementById('app'));
+    
+    </script>
+
+    
+
+
+  </body>
+</html>
