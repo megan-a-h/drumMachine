@@ -1,6 +1,6 @@
 'use strict'
 
-/*This is the back end code for my drum machine web page. This webpage contains 9 buttons.  On button click or key press each button will play a sound and display a description of the sound  */
+/*Code for my drum machine web page. This webpage contains 9 buttons.  On button click or key press each button will play a sound and display a description of the sound  */
 
 /*array of objects called buttonSounds holds the letter id for each button, the keycode for the letter on the keyboard, a string description of the sound and the link to the sound file */
 const buttonSounds = [
